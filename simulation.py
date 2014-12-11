@@ -179,53 +179,46 @@ class Graph():
         self.largeGroup = largeGroup
         self.screen = screen
 
-        self.food = [0] * 9
-        self.small = [0] * 9
-        self.medium = [0] * 9
-        self.large = [0] * 9
-
-        self.updateCount = 0
+        self.food = [0] * 801
+        self.small = [0] * 801
+        self.medium = [0] * 801
+        self.large = [0] * 801
 
     def update(self):
 
-        self.updateCount -= 1
-        if self.updateCount < 1:
-
-            countList = self.foodGroup.sprites()
-            count = 0
-            for i in countList:
-                count += 1
-            self.food.insert(0, count)
-            var = self.food.pop()
-            countList = self.smallGroup.sprites()
-            count = 0
-            for i in countList:
-                count += 1
-            self.small.insert(0, count * 2)
-            var = self.small.pop()
-            countList = self.mediumGroup.sprites()
-            count = 0
-            for i in countList:
-                count += 1
-            self.medium.insert(0, count * 5)
-            var = self.medium.pop()
-            countList = self.largeGroup.sprites()
-            count = 0
-            for i in countList:
-                count += 1
-            self.large.insert(0, count * 5)
-            var = self.large.pop()
-
-            self.updateCount = 15
+        countList = self.foodGroup.sprites()
+        count = 0
+        for i in countList:
+            count += 1
+        self.food.insert(0, count)
+        var = self.food.pop()
+        countList = self.smallGroup.sprites()
+        count = 0
+        for i in countList:
+            count += 1
+        self.small.insert(0, count * 1.5)
+        var = self.small.pop()
+        countList = self.mediumGroup.sprites()
+        count = 0
+        for i in countList:
+            count += 1
+        self.medium.insert(0, count * 5)
+        var = self.medium.pop()
+        countList = self.largeGroup.sprites()
+        count = 0
+        for i in countList:
+            count += 1
+        self.large.insert(0, count * 5)
+        var = self.large.pop()
 
         pygame.draw.rect(self.screen, BLACK, (SCREEN_WIDTH, 0, SCREEN_WIDTH+800, SCREEN_HEIGHT))
-        for i in range(8):
-            pygame.draw.line(self.screen, WHITE, (SCREEN_WIDTH + i*100, SCREEN_HEIGHT - self.food[i]), (SCREEN_WIDTH + (i+1)*100, SCREEN_HEIGHT - self.food[i+1]))
-        for i in range(8):
-            pygame.draw.line(self.screen, BLUE, (SCREEN_WIDTH + i*100, SCREEN_HEIGHT - self.small[i]), (SCREEN_WIDTH + (i+1)*100, SCREEN_HEIGHT - self.small[i+1]))
-        for i in range(8):
-            pygame.draw.line(self.screen, GREEN, (SCREEN_WIDTH + i*100, SCREEN_HEIGHT - self.medium[i]), (SCREEN_WIDTH + (i+1)*100, SCREEN_HEIGHT - self.medium[i+1]))
-        for i in range(8):
-            pygame.draw.line(self.screen, RED, (SCREEN_WIDTH + i*100, SCREEN_HEIGHT - self.large[i]), (SCREEN_WIDTH + (i+1)*100, SCREEN_HEIGHT - self.large[i+1]))
+        for i in range(800):
+            pygame.draw.line(self.screen, WHITE, (SCREEN_WIDTH + i, SCREEN_HEIGHT - self.food[i]), (SCREEN_WIDTH + i + 1, SCREEN_HEIGHT - self.food[i+1]))
+        for i in range(800):
+            pygame.draw.line(self.screen, BLUE, (SCREEN_WIDTH + i, SCREEN_HEIGHT - self.small[i]), (SCREEN_WIDTH + i + 1, SCREEN_HEIGHT - self.small[i+1]))
+        for i in range(800):
+            pygame.draw.line(self.screen, GREEN, (SCREEN_WIDTH + i, SCREEN_HEIGHT - self.medium[i]), (SCREEN_WIDTH + i + 1, SCREEN_HEIGHT - self.medium[i+1]))
+        for i in range(800):
+            pygame.draw.line(self.screen, RED, (SCREEN_WIDTH + i, SCREEN_HEIGHT - self.large[i]), (SCREEN_WIDTH + i + 1, SCREEN_HEIGHT - self.large[i+1]))
 
 simulation = Simulation()
